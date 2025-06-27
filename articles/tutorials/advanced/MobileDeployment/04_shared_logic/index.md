@@ -22,6 +22,16 @@ description:
 
 ![Android Emulator](images/game_android_emulator.png)
 
+Change orientation setting from:
+
+        ScreenOrientation = ScreenOrientation.FullUser,
+
+to:
+
+        ScreenOrientation = ScreenOrientation.Landscape,
+
+![Android Emulator](images/game_android_orientation.png)
+
 # iOS Emulator
 
 ![iOS Simulator](images/game_ios_simulator.png)
