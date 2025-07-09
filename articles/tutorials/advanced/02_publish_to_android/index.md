@@ -28,13 +28,34 @@ Before diving into the technical steps, it's important to understand what happen
 
 - **Store Preparation**: Metadata, screenshots, and compliance with store policies
 
-## Package Configuration
+## Preparing Your Project for Release
 
-### The Package Name
+### Setting Package Information
 
-Your package name serves as the unique identifier for your app on the Play Store. Once published, this cannot be changed, so choose carefully.
+The first step in preparing your Android project is configuring the package name and version information. This is like giving your app its official identity that will be used throughout the Play Store.
 
-To set your package name:
+### Package Name and Version Configuration
+
+Your package name serves as the unique identifier for your app on the Play Store. The most reliable way to configure this is directly in your Android project's .csproj file by adding these properties:
+
+```xml
+<ApplicationId>com.companyname.DungeonSlime.Android</ApplicationId>
+<ApplicationVersion>1</ApplicationVersion>
+<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+```
+
+These properties control:
+
+- **ApplicationId**: The unique package identifier for your app (equivalent to package name)
+
+- **ApplicationVersion**: The version code - an integer that increases with each release
+
+- **ApplicationDisplayVersion**: The version name that users see in the store
+
+[!IMPORTANT]
+The ApplicationId must be unique across the entire Play Store. Use a domain you control (like com.yourstudio.gamename) to avoid conflicts. This cannot be changed after publication.
+
+Alternatively, you can set these values through the Visual Studio interface:
 
 - In your Android project, open the Properties panel.
 
@@ -63,6 +84,26 @@ In Visual Studio, there is a manifest editor for both editing of name and versio
 
 ![Package Name and Version](images/android_package_name.png)
 
+## Project File Configuration
+
+Before working with the Android manifest, you should configure your project's target platform settings in the .csproj file. This includes setting the minimum supported Android version.
+
+Add the following property to your Android project file:
+
+```xml
+    <SupportedOSPlatformVersion>23<SupportedOSPlatformVersion>
+```
+
+This setting specifies that your app supports Android API level 23 (Android 6.0) and higher. This is important because:
+
+- It determines which Android devices can install your app
+
+- It affects which APIs you can use in your code
+The Play Store uses this to filter app visibility
+
+
+[!TIP]
+API level 23 (Android 6.0) is a good minimum target as it covers the vast majority of active Android devices while still providing access to modern features. You can check current Android version distribution on the Android Developer Dashboard.
 
 ## Editing the Android Manifest
 
@@ -157,64 +198,23 @@ Once your app is signed and built, you're ready to submit to the Google Play Sto
 
 Visit the [Google Play Console](https://play.google.com/console/u/0/developers) to manage your app submissions:
 
-# Releasing to store
+[Google Play Console dashboard](images/android_release.png)
 
-Set the package name and version.
+The console allows you to:
 
-Editing the AndroidManifest.xml
+- Upload your app files
+- Manage app metadata and store listing
+- Track reviews and ratings
+- Monitor download statistics
+- Manage updates and releases
 
-# Build release configuration
+## Upload Process
 
+1. Create a new app in the Play Console
+2. Upload your signed APK or AAB file
+3. Complete the store listing with descriptions and screenshots
+4. Set pricing and distribution options
+5. Submit for review
 
-Distribute option
-
-
-Import the signing key
-
-
-Select location to mykeystore.jks
-
-https://play.google.com/console/u/0/developers
-
-![iOS Simulator](images/android_release.png)
-
-
-
-
-
-```csharp
-    <SupportedOSPlatformVersion>23</SupportedOSPlatformVersion>
-```
-
-```csharp
-    <ApplicationId>com.companyname.DungeonSlime.Android</ApplicationId>
-    <ApplicationVersion>1</ApplicationVersion>
-    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-```
-
-```csharp
-    <PackageReference Include="MonoGame.Framework.Android" Version="3.8.*" />
-```
-
-## Full csproj file
-
-```csharp
-<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net8.0-android</TargetFramework>
-    <SupportedOSPlatformVersion>23</SupportedOSPlatformVersion>
-    <OutputType>Exe</OutputType>
-    <ApplicationId>com.companyname.DungeonSlime.Android</ApplicationId>
-    <ApplicationVersion>1</ApplicationVersion>
-    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
-    <PackageReference Include="MonoGame.Framework.Android" Version="3.8.*" />
-  </ItemGroup>
-  <Target Name="RestoreDotnetTools" BeforeTargets="CollectPackageReferences">
-    <Message Text="Restoring dotnet tools (this might take a while depending on your internet speed and should only happen upon building your project for the first time, or after upgrading MonoGame, or clearing your nuget cache)" Importance="High" />
-    <Exec Command="dotnet tool restore" />
-  </Target>
-</Project>
-```
+[!TIP]
+Google's review process typically takes 1-3 days, but can take longer for new developer accounts or apps with policy concerns.
