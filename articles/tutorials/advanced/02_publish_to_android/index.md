@@ -198,7 +198,7 @@ Once your app is signed and built, you're ready to submit to the Google Play Sto
 
 Visit the [Google Play Console](https://play.google.com/console/u/0/developers) to manage your app submissions:
 
-[Google Play Console dashboard](images/android_release.png)
+![Google Play Console dashboard](images/android_release.png)
 
 The console allows you to:
 
