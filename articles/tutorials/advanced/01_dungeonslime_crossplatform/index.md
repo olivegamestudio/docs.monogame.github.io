@@ -19,27 +19,46 @@ When converted to cross-platform, your solution structure will look like this:
 
 ![Cross Platform Projects](images\crossplatform_projects.png)
 
-Additional projects were created
+## DungeonSlime.Common - Sharing logic
 
-![Create Common Project](images\rider_game_library.png)
+The common project that contains the logic.
 
-# Add reference to all game projects.
+```csharp
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>net8.0;net8.0-ios;net8.0-android</TargetFrameworks>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Gum.MonoGame" Version="2025.6.26.1" />
+    </ItemGroup>
+    <ItemGroup Condition="'$(TargetFramework)'=='net8.0-ios'">
+        <PackageReference Include="MonoGame.Framework.iOS" Version="3.8.4" />
+    </ItemGroup>
+    <ItemGroup Condition="'$(TargetFramework)'=='net8.0-android'">
+        <PackageReference Include="MonoGame.Framework.Android" Version="3.8.4" />
+    </ItemGroup>
+    <ItemGroup Condition="'$(TargetFramework)'=='net8.0'">
+        <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.4" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\MonoGameLibrary\MonoGameLibrary.csproj" />
+    </ItemGroup>
+</Project>
+```
 
-# Moved game code from windows version to common project
+## Moved game code from windows version to the common project
 
-- Removed game class from android and ios project.
+Moved the logic classes into the common project. The iOS, Android and Windows projects become effectively shells.
 
-# Content files
-
-- Copy definitions to MGCB files.
+Removed game class from android and ios project.
 
 This structure includes:
 
 **Shared Code**: Your main game logic that works across all platforms. This can be found in the **DungeonSlime.Common** project.
 
-**Platform-Specific Projects**: Individual projects for Windows, Android, and iOS. These are named **DungeonSlime**, **DungeonSlime.Android** and **DungeonSlime.iOS**.
+**Platform-Specific Projects**: Individual projects for Windows, Android, and iOS. These are named **DungeonSlime.Windows**, **DungeonSlime.Android** and **DungeonSlime.iOS**.
 
-# Third-Party Libraries
+## Third-Party Libraries updated
 
 Many third-party libraries also need to be updated for cross-platform compatibility.
 

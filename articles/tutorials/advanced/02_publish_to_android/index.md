@@ -61,7 +61,7 @@ Alternatively, you can set these values through the Visual Studio interface:
 
 - Navigate to the Android Manifest section.
 
-- Set the Package name field to your desired identifier (e.g., **com.yourstudio.dungeonslime**)
+- Set the Package name field to your desired identifier (e.g., **com.yourname.gamename**)
 
 - Ensure the name follows reverse domain notation.
 
@@ -69,11 +69,12 @@ Alternatively, you can set these values through the Visual Studio interface:
 
 Android apps use two version identifiers:
 
-Version Name: The version string users see (e.g., "1.0.0")
-Version Code: An integer that increases with each release (e.g., 1, 2, 3...)
+- **Version Name**: The version string users see (e.g., "1.0.0")
+
+- **Version Code**: An integer that increases with each release (e.g., 1, 2, 3...)
 
 [!IMPORTANT]
-Package names must be unique across the entire Play Store. Use a domain you control (like com.yourstudio.gamename) to avoid conflicts. The package name cannot be changed after publication.
+Package names must be unique across the entire Play Store. Use a domain you control (like com.yourname.gamename) to avoid conflicts. The package name cannot be changed after publication though.
 
 Set both values in the same properties panel where you configured the package name.
 
