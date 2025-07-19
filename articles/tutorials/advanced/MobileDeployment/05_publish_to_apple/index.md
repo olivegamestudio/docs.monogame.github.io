@@ -26,10 +26,10 @@ In the iOS **csproj**:
 in the **info.plist**:
 
 ```xml
-	<key>CFBundleIdentifier</key>
-	<string>com.companyname.dungeonslime</string>
-	<key>MinimumOSVersion</key>
-	<string>12.2</string>
+<key>CFBundleIdentifier</key>
+<string>com.companyname.dungeonslime</string>
+<key>MinimumOSVersion</key>
+<string>12.2</string>
 ```
 
 # Assets
@@ -37,16 +37,16 @@ in the **info.plist**:
 # asset.car
 
 ```xml
-	<key>CFBundleIconName</key>
-	<string>AppIcon</string>
-	<key>CFBundleIcons</key>
+<key>CFBundleIconName</key>
+<string>AppIcon</string>
+<key>CFBundleIcons</key>
+<dict>
+	<key>CFBundlePrimaryIcon</key>
 	<dict>
-		<key>CFBundlePrimaryIcon</key>
-		<dict>
-			<key>CFBundleIconName</key>
-			<string>AppIcon</string>
-		</dict>
+		<key>CFBundleIconName</key>
+		<string>AppIcon</string>
 	</dict>
+</dict>
 ```
 
 # Versioning
@@ -54,10 +54,10 @@ in the **info.plist**:
 info.plist
 
 ```xml
-	<key>CFBundleVersion</key>
-	<string>2</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.1</string>
+<key>CFBundleVersion</key>
+<string>2</string>
+<key>CFBundleShortVersionString</key>
+<string>1.1</string>
 ```
 
 Packaging
@@ -70,8 +70,9 @@ dotnet publish -c Release -f net8.0-ios -p:ArchiveOnBuild=true
 
 # IPA
 
-
-
+```
+DungeonSlime.iOS/bin/Release/net8.0-ios/ios-arm64/publish/DungeonSlime.iOS.ipa
+```
 
 # Uploading to AppStore
 
