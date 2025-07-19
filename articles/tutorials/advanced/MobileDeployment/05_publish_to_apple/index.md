@@ -70,17 +70,17 @@ dotnet publish -c Release -f net8.0-ios -p:ArchiveOnBuild=true
 
 # IPA
 
-```
+```bash
 DungeonSlime.iOS/bin/Release/net8.0-ios/ios-arm64/publish/DungeonSlime.iOS.ipa
 ```
 
 # Uploading to AppStore
 
-Transporter upload
-
-## TestFlight
+## Transporter
 
 ![Upload using Transporter](images/transporter.png)
+
+## TestFlight
 
 Upload to AppStore which will perform final validation.
 
@@ -96,3 +96,12 @@ All being well, it will give the green light for testing.
 
 ## Store Release
 
+![Upload using Transporter](images/testflight-build.png)
+
+![Upload using Transporter](images/testflight-build-encryption.png)
+
+![Upload using Transporter](images/testflight-build-assign-testers.png)
+
+![Upload using Transporter](images/distribution-build.png)
+
+![Upload using Transporter](images/distribution-build-add.png)
