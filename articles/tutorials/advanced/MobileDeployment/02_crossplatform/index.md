@@ -1,39 +1,55 @@
-title: "01: Setting Up Cross-Platform Projects"
+title: "02: Setting Up Cross-Platform Projects"
 description: "Learn how to convert a Windows-only MonoGame project to support iOS and Android platforms, creating a unified codebase for multi-platform deployment."
 
+# What You'll Learn
+
 In this chapter you will:
+- Convert a Windows-only MonoGame project to support multiple platforms
+- Understand the project structure for multi-platform games
+- Set up shared code architecture for cross-platform development
 
-- Converting a Windows-only MonoGame project to support multiple platforms.
+# Prerequisites
 
-- Understand the project structure for multi-platform games.
+Before starting this chapter, ensure you have:
+- Read the [Building 2D Games](../building_2d_games) tutorial
+- **For iOS Development:**
+  - App Store Developer Account
+  - Certificates and Provisioning Profiles configured
+  - Mac with Xcode 16 installed
+- **For Android Development:**
+  - Android SDK and tools installed (covered in Chapter 1)
 
 # Converting the Dungeon Slime Project
 
-The Dungeon Slime game from the [Building 2D games](..\building_2d_games) tutorial has been updated to demonstrate making it support other platforms.
+The Dungeon Slime game from the 2D tutorial serves as our practical example for cross-platform conversion. This approach can be applied to any MonoGame project you want to deploy across multiple platforms.
 
-This conversion serves as a practical example of the steps needed to make any MonoGame project work across multiple platforms.
+The key principle is **code sharing** - we'll extract the game logic into a common library that all platform-specific projects can use.
 
-# Project Structure Overview
+# Cross-Platform Project Structure
 
-When converted to cross-platform, your solution structure will look like this:
+When converted to support multiple platforms, your solution structure will look like this:
 
-![Cross Platform Projects](images\crossplatform_projects.png)
+![Cross Platform Projects](images/crossplatform_projects.png)
 
-## DungeonSlime.Common - Sharing logic
+This architecture separates concerns cleanly:
+- **Shared game logic** in a common library
+- **Platform-specific shells** that handle deployment and platform requirements
+- **Consistent naming** for easy project management
 
-The common project that contains the logic.
+## DungeonSlime.Common - The Shared Library
 
-Multi-targetting for Windows, iOS and Android
+The common project contains all your game logic and uses multi-targeting to support different platforms:
 
-```
+```xml
 <TargetFrameworks>net8.0;net8.0-ios;net8.0-android</TargetFrameworks>
 ```
 
-Each target pull in the correct MonoGame package:
+## Platform-Specific Package References
+
+Each target framework pulls in the appropriate MonoGame package:
 
 For iOS:
-
-```
+```xml
 <ItemGroup Condition="'$(TargetFramework)'=='net8.0-ios'">
     <PackageReference Include="MonoGame.Framework.iOS" Version="3.8.4" />
 </ItemGroup>
@@ -41,7 +57,7 @@ For iOS:
 
 For Android:
 
-```
+```xml
 <ItemGroup Condition="'$(TargetFramework)'=='net8.0-android'">
     <PackageReference Include="MonoGame.Framework.Android" Version="3.8.4" />
 </ItemGroup>
@@ -49,30 +65,33 @@ For Android:
 
 For Windows:
 
-```
+```xml
 <ItemGroup Condition="'$(TargetFramework)'=='net8.0'">
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.4" />
 </ItemGroup>
 ```
 
-## Moved logic from the Windows version to the common project
+## Platform-Specific Projects
 
-Moved the logic classes into the common project for sharing with the game projects. The iOS, Android and Windows projects become effectively shells.
+The individual platform projects become lightweight shells that:
 
-Removed game class from android and ios project too.
+- Reference the common library
+- Handle platform-specific initialization
+- Manage deployment settings and assets
+- Contain minimal platform-specific code
 
-This structure includes:
+## Project Structure
 
-**Shared Code**: Your main game logic that works across all platforms. This can be found in the **DungeonSlime.Common** project.
+- **DungeonSlime.Windows** - Windows desktop version
+- **DungeonSlime.Android** - Android mobile version
+- **DungeonSlime.iOS** - iOS mobile version
 
-**Platform-Specific Projects**: Individual projects for Windows, Android, and iOS. These are named **DungeonSlime.Windows**, **DungeonSlime.Android** and **DungeonSlime.iOS**.
+The platform projects no longer contain the main Game class - this has been moved to the common library for sharing.
 
-Naming conventions adding the platform to the end of the game name.
+## Third-Party Library Considerations
 
-## Third-Party Library updated
-
-DungeonSlime game uses Gum and needs to be updated to support cross-platforms.
+When using external libraries like Gum, ensure they support cross-platform development:
 
 ```xml
-<PackageReference Include="Gum.MonoGame" Version="2025.6.26.1" />
+<PackageReference Include="Gum.MonoGame" Version="2025.8.3.2" />
 ```
