@@ -3,11 +3,9 @@
 
 ![](images/game_android_target.png)
 
-![](images/game_android_emulator.png)
-
 ![](images/game_android_device.png)
 
-![](images/game_android_device2.png)
+![](images/game_android_device2.png) 
 
 ![](images/game_android_orientation.png)
 
