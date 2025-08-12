@@ -10,7 +10,7 @@ This tutorial extends the **MonoGame 2D Dungeon Slime tutorial** to mobile platf
 ## What You'll Learn
 
 By the end of this mobile tutorial series, you'll have:
-- Ported the Dungeon Slime game to run on Android and iOS
+- Ported the **Dungeon Slime** game to run on Android and iOS
 - Implemented touch controls to replace mouse and keyboard input
 - Set up cross-platform project architecture for code sharing
 - Learned debugging techniques for mobile development

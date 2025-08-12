@@ -48,26 +48,26 @@ The common project contains all your game logic and uses multi-targeting to supp
 
 Each target framework pulls in the appropriate MonoGame package:
 
-For iOS:
+For **iOS**:
 ```xml
 <ItemGroup Condition="'$(TargetFramework)'=='net8.0-ios'">
-    <PackageReference Include="MonoGame.Framework.iOS" Version="3.8.4" />
+    <PackageReference Include="MonoGame.Framework.iOS" Version="3.8.5-develop.6" />
 </ItemGroup>
 ```
 
-For Android:
+For **Android**:
 
 ```xml
 <ItemGroup Condition="'$(TargetFramework)'=='net8.0-android'">
-    <PackageReference Include="MonoGame.Framework.Android" Version="3.8.4" />
+    <PackageReference Include="MonoGame.Framework.Android" Version="3.8.5-develop.6" />
 </ItemGroup>
 ```
 
-For Windows:
+For **Windows**:
 
 ```xml
 <ItemGroup Condition="'$(TargetFramework)'=='net8.0'">
-    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.4" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.5-develop.6" />
 </ItemGroup>
 ```
 
@@ -75,7 +75,7 @@ For Windows:
 
 The individual platform projects become lightweight shells that:
 
-- Reference the common library
+- Reference the _common_ library
 - Handle platform-specific initialization
 - Manage deployment settings and assets
 - Contain minimal platform-specific code
@@ -93,5 +93,5 @@ The platform projects no longer contain the main Game class - this has been move
 When using external libraries like Gum, ensure they support cross-platform development:
 
 ```xml
-<PackageReference Include="Gum.MonoGame" Version="2025.8.3.2" />
+<PackageReference Include="Gum.MonoGame" Version="2025.6.26.1" />
 ```
