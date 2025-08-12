@@ -155,7 +155,15 @@ dotnet publish -c Release -f net8.0-ios -r ios-arm64 -p:ArchiveOnBuild=true
 #### Transporter
 
 - Standalone upload tool from Apple
+
+![Transporter](images/ios/transporter.png)
+
 - Useful for automated workflows
+
+![Transporter Upload Step 1](images/ios/transporter-upload1.png)
+
+![Transporter Upload Step 2](images/ios/transporter-upload2.png)
+
 - Requires pre-signed IPA file
 
 ### Build Processing
@@ -166,6 +174,12 @@ After upload:
 2. **Build Appears:** In App Store Connect under "Activity"
 3. **Status Check:** Wait for "Ready to Submit" status
 4. **Build Selection:** Choose the build for your app version
+
+![Transporter](images/ios/testflight-build.png)
+
+![Transporter](images/ios/testflight-build-encryption.png)
+
+![Transporter](images/ios/testflight-build-assign-testers.png)
 
 ## App Review Submission
 
@@ -336,6 +350,8 @@ msbuild YourApp.Android.csproj /p:Configuration=Release /p:AndroidPackageFormat=
 # Build APK
 dotnet publish -f net8.0-android -c Release /p:AndroidPackageFormat=apk
 ```
+
+![Visual Studio Archive](images/android/android_release.png)
 
 ### Verification Steps
 
