@@ -58,21 +58,67 @@ Verify your `EntitlementsProduction.plist` has debugging disabled:
 
 Ensure your `Assets.xcassets/AppIcon.appiconset` contains all required sizes:
 
-- iPhone: 40x40, 60x60, 87x87, 120x120, 180x180
-- iPad: 40x40, 58x58, 80x80, 152x152, 167x167  
-- App Store: 1024x1024
+- **iPhone**: 40x40, 60x60, 87x87, 120x120, 180x180
+- **iPad**: 40x40, 58x58, 80x80, 152x152, 167x167  
+- **App Store**: 1024x1024
+
+|Asset|Image|
+|-|-|
+|40x40|![40x40](images/icons/appicon20x20@2x.png)|
+|58x58|![58x58](images/icons/appicon29x29@2x.png)|
+|60x60|![60x60](images/icons/appicon20x20@3x.png)|
+|80x80|![80x80](images/icons/appicon40x40@2x.png)|
+|87x87|![87x87](images/icons/appicon29x29@3x.png)|
+|120x120|![120x120](images/icons/appicon40x40@3x.png)|
+|120x120|![120x120](images/icons/appicon60x60@2x.png)|
+|152x152|![152x152](images/icons/appicon76x76@2x.png)|
+|83.5x83.5|![167x167](images/icons/appicon83.5x83.5@2x.png)|
+|180x180|![180x180](images/icons/appicon60x60@3x.png)|
+|Artwork 1024x1024|![1024x1024](images/icons/appiconItunesArtwork.png)|
 
 #### Info.plist Configuration
 
 Verify essential properties are set:
 
+The bundle identifier:
+
+From the csproj to match the one in the info.plist file too.
+
+> [!NOTE]
+> Change the bundle identifier to match what was set up during the provisioning process.
+
+IOS CSProj:
+
+```xml
+<BundleIdentifier>com.monogame.dungeonslime</BundleIdentifier>
+```
+
+Info.Plist setting:
+
+```xml
+	<key>CFBundleIdentifier</key>
+	<string>com.monogame.dungeonslime</string>
+```
+
+The game name to appear on the device:
+
 ```xml
 <key>CFBundleDisplayName</key>
 <string>DungeonSlime</string>
+```
+
+Versioning of game:
+
+```
 <key>CFBundleVersion</key>
 <string>11</string>
 <key>CFBundleShortVersionString</key>
 <string>1.10</string>
+```
+
+Typical settings for a game:
+
+```
 <key>UIRequiresFullScreen</key>
 <true/>
 <key>UIStatusBarHidden</key>
@@ -142,15 +188,15 @@ You need screenshots for each device type you support:
 
 #### Using Command Line
 
-```bash
+The creation of an IPA file can be achieved on the terminal. Currently, Rider does **not** support this process.
+
+```sh
 dotnet clean
-
 rm -rf bin/ obj/
-
 dotnet publish -c Release -f net8.0-ios -r ios-arm64 -p:ArchiveOnBuild=true
 ```
 
-### Upload Methods
+### Upload Method
 
 #### Transporter
 

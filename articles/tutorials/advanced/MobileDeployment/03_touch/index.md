@@ -1,11 +1,15 @@
 ---
-title: "Chapter 03: Touch Gesture Handling"
+title: "03: Touch Gesture Handling"
 description: "Learn the fundamentals of touch gesture recognition in MonoGame - registration, detection, and processing."
 ---
 
+Before proceeding with the cross-platform conversion, let's review how to handle touch input in MonoGame. The concepts discussed here apply to any MonoGame project. For our Dungeon Slime demo, touch input is managed by the Gum library, but understanding the fundamentals is still important.
+
 ## Gesture Registration
 
-Before your application can respond to touch input, you must explicitly register for the gesture types you want to detect. This is done during initialization:
+Before your application can respond to touch input, you must explicitly register for the gesture types you want to detect.
+
+This is done during initialization:
 
 ```csharp
 protected override void Initialize()
@@ -40,7 +44,8 @@ protected override void Initialize()
 | `DragComplete` | End of any drag operation | Finalize object placement |
 | `PinchComplete` | End of pinch operation | Finalize zoom level |
 
-**Important:** Only register for gestures you actually need. Each enabled gesture type has a small performance cost.
+> [!NOTE]
+> Only register for gestures you actually need. Each enabled gesture type has a small performance cost.
 
 ## Gesture Detection Loop
 

@@ -1,5 +1,7 @@
+---
 title: "02: Setting Up Cross-Platform Projects"
 description: "Learn how to convert a Windows-only MonoGame project to support iOS and Android platforms, creating a unified codebase for multi-platform deployment."
+---
 
 # What You'll Learn
 
@@ -11,19 +13,21 @@ In this chapter you will:
 # Prerequisites
 
 Before starting this chapter, ensure you have:
+
 - Read the [Building 2D Games](../building_2d_games) tutorial
+
 - **For iOS Development:**
-  - App Store Developer Account
-  - Certificates and Provisioning Profiles configured
-  - Mac with Xcode 16 installed
+  - An App Store Developer Account
+  - **Certificates** and **Provisioning Profiles** configured and installed.
+  - **Mac with Xcode 16 installed** - installed through the App Store.
 - **For Android Development:**
-  - Android SDK and tools installed (covered in Chapter 1)
+  - Android SDK and tools installed - through the Visual Studio Installer or through Jetbrains Rider.
 
 # Converting the Dungeon Slime Project
 
 The Dungeon Slime game from the 2D tutorial serves as our practical example for cross-platform conversion. This approach can be applied to any MonoGame project you want to deploy across multiple platforms.
 
-The key principle is **code sharing** - we'll extract the game logic into a common library that all platform-specific projects can use.
+The key principle is **code sharing** of the game logic - we'll extract the game logic into a common library that all platform-specific projects can refer to and use.
 
 # Cross-Platform Project Structure
 
@@ -90,7 +94,9 @@ The platform projects no longer contain the main Game class - this has been move
 
 ## Third-Party Library Considerations
 
-When using external libraries like Gum, ensure they support cross-platform development:
+When using external libraries like **Gum**, ensure they support cross-platform development:
+
+[https://github.com/vchelaru/Gum](https://github.com/vchelaru/Gum)
 
 ```xml
 <PackageReference Include="Gum.MonoGame" Version="2025.6.26.1" />
